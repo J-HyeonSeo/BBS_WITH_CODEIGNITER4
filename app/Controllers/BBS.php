@@ -3,13 +3,13 @@
 namespace App\Controllers;
 
 class BBS extends BaseController {
-    public function bbs_new_form() {
+    public function bbsNewForm() {
         return view('templates/header')
             .view('pages/bbs-form')
             .view('templates/footer');
     }
 
-    public function create_bbs() {
+    public function createBbs() {
 
     }
 

@@ -280,7 +280,7 @@ hr {
 .main-container {
     font-family: 'Lato';
     width: fit-content;
-    margin-top: 80px;
+    margin-top: 10px;
     margin-bottom: 80px;
     margin-left: auto;
     margin-right: auto;
@@ -306,6 +306,17 @@ hr {
 
 
 /* 게시글 등록 관련 */
+
+#bbs-title-wrap {
+    text-align: center;
+    margin-top: 80px;
+}
+
+#bbs-title {
+    width: 795px;
+    height: 35px;
+}
+
 #create-bbs-btn-wrap {
     text-align: center;
 }

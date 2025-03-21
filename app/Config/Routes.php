@@ -6,8 +6,11 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-$routes->get('/login', 'Login::login');
-$routes->get('/join', 'Join::join');
+$routes->get('/login', 'Login::loginForm');
+$routes->post('/login', 'Login::doLogin');
+$routes->get('/join', 'Join::joinForm');
+$routes->post('/join', 'Join::doJoin');
 
 // 게시판 내용 관련 페이지
-$routes->get('/bbs/new', 'BBS::new');
+$routes->get('/bbs/new', 'BBS::bbsNewForm');
+$routes->post('/bbs', 'BBS::createBbs');

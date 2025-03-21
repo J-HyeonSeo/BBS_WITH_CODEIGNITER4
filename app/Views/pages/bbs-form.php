@@ -1,3 +1,8 @@
+
+<div id="bbs-title-wrap">
+    <input id="bbs-title" name="bbs-title" placeholder="제목을 작성해주세요."/>
+</div>
+
 <div class="main-container">
     <div class="editor-container editor-container_classic-editor" id="editor-container">
         <div class="editor-container__editor"><div id="editor"></div></div>
@@ -11,10 +16,6 @@
 <script src="https://cdn.ckeditor.com/ckeditor5/44.3.0/ckeditor5.umd.js" crossorigin></script>
 
 <script>
-    /**
-     * This configuration was generated using the CKEditor 5 Builder. You can modify it anytime using this link:
-     * https://ckeditor.com/ckeditor-5/builder/#installation/NoNgNARATAdAzPCkQgJwEZ0tVAHFAFgFYAGEOVEYksuOkogdhKyjhIKQgFMA7JEmGDowgsaLDoAupA7NUAY05SgA
-     */
 
     let editor;
 
@@ -145,9 +146,49 @@
         });
 
     function saveData() {
-        const data = editor.getData();
 
-        fetch('/bbs')
+        const bbsTitle = document.getElementById("bbs-title").value.trim();
+        const content = editor.getData();
+
+        if (bbsTitle === null || bbsTitle === '') {
+            alert("게시글 제목을 작성해주세요.");
+            return;
+        }
+
+        if (bbsTitle.length > 30) {
+            alert("게시글 제목은 30 자 이내로 작성해주세요.");
+            return;
+        }
+
+        if (content === null || content === '') {
+            alert("게시글 내용을 작성해주세요.");
+            return;
+        }
+
+        if (content.length > 4000) {
+            alert("게시글 내용은 4000자 이내로 작성해주세요.");
+            return;
+        }
+
+        fetch("/bbs", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "<?= csrf_header() ?>": "<?= csrf_hash() ?>"
+            },
+            body: JSON.stringify({
+                'bbs-title': bbsTitle,
+                'content': content
+            })
+        }).then(response => {
+                if (response.status === 200) {
+                    window.location.href = "/";
+                }
+            })
+            .catch(error => {
+                console.error(error);
+                alert("게시글 작성 중 오류가 발생하였습니다.");
+            });
 
     }
 
