@@ -12,5 +12,8 @@
 
 # 프로젝트 사진
 
+## ERD
+![ERD](doc/bbs-erd.png)
+
 ## 메인 페이지
 ![MAIN](doc/bbs-image-main.png)
