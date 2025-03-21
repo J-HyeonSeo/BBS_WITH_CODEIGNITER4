@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap');
+/* Noto Sans KR */
+
+/* 공통 스타일 */
+* {
+    font-family: "Noto Sans KR";
+    font-weight: 400;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+
+/* 헤더 스타일 */
+header {
+    width: 100%;
+    height: 200px;
+}
+
+#title {
+    margin: 100px auto;
+    width: 350px;
+    height: 150px;
+    background-color: #6C6C6C;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#title h1 {
+    color: white;
+    font-size: 30px;
+    margin: 0;
+}
+
+.btn {
+    background-color: #666666;
+    border-radius: 5px;
+    width: fit-content;
+    color: white;
+    padding: 5px;
+    text-align: center;
+}
+
+.btn a {
+    text-decoration: none;
+    color: white;
+}
+
+#login {
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    width: 100px;
+    background-color: #45A651;
+}
+
+#nickname {
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100px;
+    right: 170px;
+    font-size: 20px;
+}
+
+#logout {
+    position: absolute;
+    top: 100px;
+    right: 50px;
+    width: 100px;
+    background-color: #D37811;
+}
+
+
+/* 게시판 스타일 상단 */
+main {
+    margin: 100px auto;
+    width: 850px;
+    height: 600px;
+}
+
+hr {
+    border: 0;
+    height: 2px;
+    background: black;
+}
+
+#bbs-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#bbs-header h4 {
+    margin: 0;
+}
+
+#search {
+    background-color: #EDEDED;
+    width: 240px;
+    height: 30px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#search input {
+    margin-left: 5px;
+    width: 200px;
+    background-color: #EDEDED;
+    border: none;
+}
+
+#search input:focus {
+    outline: none;
+}
+
+#search button {
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    border: none;
+    background-image: url("../image/search.png");
+}
+
+#search button:hover {
+    cursor: pointer;
+}
+
+/* 게시판 행 스타일 */
+
+#bbs-content {
+    margin: 0;
+    padding: 0;
+}
+
+.bbs-row {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #BDBDBD;
+}
+
+.bbs-row:hover {
+    background-color: #f6f6f6;
+    border-radius: 5px;
+}
+
+.number {
+    width: 50px;
+    text-align: center;
+    border-right: 1px solid #8E8E8E;
+}
+
+.title {
+    margin-left: 15px;
+    text-decoration: none;
+    color: black;
+}
+
+.title:hover {
+    color: #b54040;
+}
+
+.view {
+    margin-left: 10px;
+    color: orange;
+}
+
+.writer {
+    margin-left: auto;
+}
+
+/* 페이지 스타일 */
+
+#bbs-bottom {
+    margin-top: 25px;
+    display: flex;
+}
+
+#bbs-page {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#bbs-page a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: black;
+}
+
+#new-form-btn {
+    width: 60px;
+    text-decoration: none;
+    float: right;
+    color: white;
+    background-color: #45A651;
+}
+
