@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
     <!-- css -->
-    <link rel="stylesheet" href="public/css/styles.css">
+    <link rel="stylesheet" href="/public/css/styles.css">
     
     <!-- js --->
     
@@ -16,10 +16,14 @@
 <body>
     <header>
         <!-- 제목 스타일링 -->
-        <div id="title">
-            <h1>PHP & CodeIgniter</h1>
-            <h1>게시판</h1>
-        </div>
+        <a href="/">
+            <img id="title" src="../../../public/image/bbs_logo.png" alt="CodeIgniter BBS">
+        </a>
+
+<!--        <div id="title">-->
+<!--            <h1>PHP & CodeIgniter</h1>-->
+<!--            <h1>게시판</h1>-->
+<!--        </div>-->
         
         <!-- 로그인 -->
         <div class="btn" id="login">
