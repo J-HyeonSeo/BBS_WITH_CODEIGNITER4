@@ -266,3 +266,56 @@ hr {
 #form-input {
     margin-left: 10px;
 }
+
+
+/* CKEditor5 관련 설정 */
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+@media print {
+    body {
+        margin: 0 !important;
+    }
+}
+
+.main-container {
+    font-family: 'Lato';
+    width: fit-content;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ck-content {
+    font-family: 'Lato';
+    line-height: 1.6;
+    word-break: break-word;
+}
+
+.editor-container_classic-editor .editor-container__editor {
+    min-width: 795px;
+    max-width: 795px;
+    min-height: 600px;
+    max-height: 600px;
+}
+
+.ck-editor__editable {
+    min-height: 600px;
+    max-height: 600px;
+}
+
+
+/* 게시글 등록 관련 */
+#create-bbs-btn-wrap {
+    text-align: center;
+}
+
+#create-bbs-btn {
+    margin: 0 auto;
+    width: 100px;
+    background-color: #45A651;
+}
+
+#create-bbs-btn:hover {
+    cursor: pointer;
+}

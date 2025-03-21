@@ -8,8 +8,7 @@
     
     <!-- css -->
     <link rel="stylesheet" href="/public/css/styles.css">
-    
-    <!-- js --->
+    <link rel="stylesheet" href="https://cdn.ckeditor.com/ckeditor5/44.3.0/ckeditor5.css">
     
     <title>PHP & CodeIgniter 게시판</title>
 </head>
