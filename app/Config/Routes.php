@@ -16,3 +16,4 @@ $routes->post('/join', 'Join::doJoin');
 // 게시판 내용 관련 페이지
 $routes->get('/bbs/new', 'BBS::bbsNewForm');
 $routes->post('/bbs', 'BBS::createBbs');
+$routes->get('/bbs/(:segment)', 'BBS::getBbs/$1');

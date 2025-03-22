@@ -101,7 +101,8 @@ main {
 hr {
     border: 0;
     height: 2px;
-    background: black;
+    background: #BDBDBD;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 #bbs-header {
@@ -334,4 +335,21 @@ hr {
 
 #create-bbs-btn:hover {
     cursor: pointer;
+}
+
+/* 댓글 스타일 */
+#create-cmnt-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+#cmnt-input {
+    font-size: 17px;
+    width: 750px;
+    height: 90px;
+    resize: none;
+}
+#create-cmnt-btn {
+    width: 80px;
+    background-color: #45A651;
 }

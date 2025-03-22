@@ -3,19 +3,43 @@
 namespace App\Controllers;
 
 use App\Models\BbsModel;
+use CodeIgniter\Exceptions\PageNotFoundException;
 use mysql_xdevapi\Session;
 
 class BBS extends BaseController {
 
+    private $bbsModel;
     private $session;
 
     public function __construct() {
+        $this->bbsModel = new BbsModel();
         $this->session = session();
     }
 
     // 게시글 단건 조회 + Comment 페이징 조회
-    public function getBbs() {
+    public function getBbs($bbsId = null) {
 
+        $bbs = $this->bbsModel->find($bbsId);
+
+
+        if (is_null($bbs)) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        // 조회수 업데이트
+        $this->bbsModel
+            ->set('view', $bbs['view'] + 1)
+            ->where('bbs_id', $bbsId)
+            ->update();
+
+        $data = [
+            'bbs' => $bbs,
+            'cmnts' => ''
+        ];
+
+        return view('templates/header', $data)
+            .view('pages/bbs-view')
+            .view('templates/footer');
     }
 
     public function bbsNewForm() {
