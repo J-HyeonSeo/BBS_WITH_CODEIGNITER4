@@ -55,6 +55,10 @@ header {
     text-align: center;
 }
 
+.btn:hover {
+    cursor: pointer;
+}
+
 .btn a {
     text-decoration: none;
     color: white;
@@ -108,6 +112,7 @@ hr {
 #bbs-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #bbs-header h4 {
@@ -335,6 +340,15 @@ hr {
 
 #create-bbs-btn:hover {
     cursor: pointer;
+}
+
+/* 게시글 뷰 관련 */
+#move-edit-bbs-btn {
+    background-color: #D37811;
+}
+
+#delete-bbs-btn {
+    background-color: #b54040;
 }
 
 /* 댓글 스타일 */

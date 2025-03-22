@@ -9,4 +9,5 @@ class CmntModel extends Model
     protected $table = 'cmnt';
     protected $primaryKey = 'cmnt_id';
     protected $useAutoIncrement = true;
+    protected $allowedFields = ['bbs_id', 'member_id', 'cmnt_cn'];
 }

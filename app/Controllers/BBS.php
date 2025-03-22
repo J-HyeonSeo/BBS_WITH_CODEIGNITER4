@@ -3,16 +3,19 @@
 namespace App\Controllers;
 
 use App\Models\BbsModel;
+use App\Models\CmntModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use mysql_xdevapi\Session;
 
 class BBS extends BaseController {
 
     private $bbsModel;
+    private $cmntModel;
     private $session;
 
     public function __construct() {
         $this->bbsModel = new BbsModel();
+        $this->cmntModel = new CmntModel();
         $this->session = session();
     }
 
@@ -20,7 +23,6 @@ class BBS extends BaseController {
     public function getBbs($bbsId = null) {
 
         $bbs = $this->bbsModel->find($bbsId);
-
 
         if (is_null($bbs)) {
             throw PageNotFoundException::forPageNotFound();
@@ -34,7 +36,14 @@ class BBS extends BaseController {
 
         $data = [
             'bbs' => $bbs,
-            'cmnts' => ''
+            'cmntList' => $this->cmntModel
+                ->join('member', 'member.member_id = cmnt.member_id')
+                ->where('bbs_id', $bbsId)
+                ->orderBy('cmnt_id', 'desc')
+                ->paginate(5),
+            'pager' => $this->cmntModel->pager,
+            'start' => max(1, $this->cmntModel->pager->getCurrentPage() - 2),
+            'end' => min($this->cmntModel->pager->getLastPage(), $this->cmntModel->pager->getCurrentPage() + 2)
         ];
 
         return view('templates/header', $data)
@@ -87,6 +96,27 @@ class BBS extends BaseController {
             'view' => 0,
             'member_id' => $member_id
         ]);
+
+        return $this->response->redirect('/');
+    }
+
+    // 게시판을 삭제합니다.
+    public function deleteBbs($bbsId) {
+
+        if (!$this->session->has('member_id')) {
+            $this->response->redirect('/login');
+        }
+
+        $bbs = $this->bbsModel->find($bbsId);
+        if (is_null($bbs)) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        if ($bbs['member_id'] != $this->session->get('member_id')) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        $this->bbsModel->delete($bbsId);
 
         return $this->response->redirect('/');
     }

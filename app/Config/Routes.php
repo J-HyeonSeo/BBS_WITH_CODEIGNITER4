@@ -17,3 +17,6 @@ $routes->post('/join', 'Join::doJoin');
 $routes->get('/bbs/new', 'BBS::bbsNewForm');
 $routes->post('/bbs', 'BBS::createBbs');
 $routes->get('/bbs/(:segment)', 'BBS::getBbs/$1');
+$routes->delete('/bbs/(:segment)', 'BBS::deleteBbs/$1');
+
+$routes->post('/cmnt/(:segment)', 'Cmnt::createCmnt/$1');
