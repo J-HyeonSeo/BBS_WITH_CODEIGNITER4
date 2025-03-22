@@ -46,4 +46,25 @@ class Cmnt extends BaseController
         return $this->response->redirect('/bbs/' . $bbsId);
     }
 
+    // 댓글 삭제하기.
+    public function deleteCmnt($cmntId = null) {
+        if (!$this->session->has('member_id')) {
+            $this->response->redirect('/login');
+        }
+
+        $cmnt = $this->cmntModel->find($cmntId);
+
+        if (is_null($cmnt)) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        if ($cmnt['member_id'] != $this->session->get('member_id')) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        $this->cmntModel->delete($cmntId);
+
+        return $this->response->redirect('/bbs/' . $cmnt['bbs_id']);
+    }
+
 }

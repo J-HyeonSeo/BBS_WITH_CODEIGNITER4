@@ -1,6 +1,6 @@
 
 <div id="bbs-title-wrap">
-    <input id="bbs-title" name="bbs-title" placeholder="제목을 작성해주세요."/>
+    <input id="bbs-title" value="<?= $bbs['title'] ?>" name="bbs-title" placeholder="제목을 작성해주세요."/>
 </div>
 
 <div class="main-container">
@@ -9,8 +9,8 @@
     </div>
 </div>
 
-<div class="btn" id="create-bbs-btn" onclick="saveData()">
-    등록
+<div class="btn" id="update-bbs-btn" onclick="updateData()">
+    수정
 </div>
 
 <script src="https://cdn.ckeditor.com/ckeditor5/44.3.0/ckeditor5.umd.js" crossorigin></script>
@@ -116,7 +116,7 @@
             ]
         },
         initialData:
-            '',
+            '<?= $bbs['content'] ?>',
         licenseKey: LICENSE_KEY,
         link: {
             addTargetToExternalLinks: true,
@@ -145,33 +145,41 @@
             console.error("Something went wrong!");
         });
 
-    function saveData() {
-
-        const bbsTitle = document.getElementById("bbs-title").value.trim();
-        const content = editor.getData();
-
+    function validate(bbsTitle, content) {
         if (bbsTitle === null || bbsTitle === '') {
             alert("게시글 제목을 작성해주세요.");
-            return;
+            return false;
         }
 
         if (bbsTitle.length > 30) {
             alert("게시글 제목은 30 자 이내로 작성해주세요.");
-            return;
+            return false;
         }
 
         if (content === null || content === '') {
             alert("게시글 내용을 작성해주세요.");
-            return;
+            return false;
         }
 
         if (content.length > 4000) {
             alert("게시글 내용은 4000자 이내로 작성해주세요.");
-            return;
+            return false;
         }
 
-        fetch("/bbs", {
-            method: 'POST',
+        return true;
+    }
+
+    function updateData() {
+
+        const bbsTitle = document.getElementById("bbs-title").value.trim();
+        const content = editor.getData();
+
+        if (!validate(bbsTitle, content)) {
+            return false;
+        }
+
+        fetch("/bbs/<?= $bbs['bbs_id'] ?>", {
+            method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
                 "<?= csrf_header() ?>": "<?= csrf_hash() ?>"
@@ -181,14 +189,14 @@
                 'content': content
             })
         }).then(response => {
-                if (response.status === 200) {
-                    window.location.href = "/";
-                }
-            })
-            .catch(error => {
-                console.error(error);
-                alert("게시글 작성 중 오류가 발생하였습니다.");
-            });
+            if (response.status === 200) {
+                window.location.href = "/";
+            }
+        })
+        .catch(error => {
+            console.error(error);
+            alert("게시글 수정 중 오류가 발생하였습니다.");
+        });
 
     }
 

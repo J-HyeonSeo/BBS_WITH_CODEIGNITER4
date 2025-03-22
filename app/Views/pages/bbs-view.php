@@ -36,7 +36,17 @@
 
     <?php foreach ($cmntList as $cmnt): ?>
     <div class="cmnt-area">
-        <h3><?= $cmnt['nickname'] ?></h3>
+        <div style="display: flex;">
+            <h3><?= $cmnt['nickname'] ?></h3>
+
+            <?php if ($session->has('member_id') && $session->get('member_id') == $cmnt['member_id']): ?>
+                <form action="/cmnt/<?= $cmnt['cmnt_id'] ?>" method="post" style="display: flex; align-items: center; margin-left: 15px;">
+                    <?= csrf_field() ?>
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    <button class="btn" style="background-color: #b54040">삭제</button>
+                </form>
+            <?php endif; ?>
+        </div>
         <h3><?= $cmnt['cmnt_cn'] ?></h3>
         <hr style="box-shadow: none; height: 1px;">
     </div>

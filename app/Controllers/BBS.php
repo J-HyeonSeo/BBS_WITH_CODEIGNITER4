@@ -51,6 +51,7 @@ class BBS extends BaseController {
             .view('templates/footer');
     }
 
+    // 게시판을 등록하는 폼을 제공합니다.
     public function bbsNewForm() {
 
         if (!$this->session->has('member_id')) {
@@ -58,7 +59,34 @@ class BBS extends BaseController {
         }
 
         return view('templates/header')
-            .view('pages/bbs-form')
+            .view('pages/bbs-new-form')
+            .view('templates/footer');
+
+    }
+
+    // 게시판을 수정하는 폼을 제공합니다.
+    public function bbsEditForm($bbsId = null) {
+
+        if (!$this->session->has('member_id')) {
+            $this->response->redirect('/login');
+        }
+
+        $bbs = $this->bbsModel->find($bbsId);
+
+        if (is_null($bbs)) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        if ($bbs['member_id'] != $this->session->get('member_id')) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        $data = [
+            'bbs' => $bbs,
+        ];
+
+        return view('templates/header', $data)
+            .view('pages/bbs-edit-form')
             .view('templates/footer');
     }
 
@@ -95,6 +123,35 @@ class BBS extends BaseController {
             'content' => $content,
             'view' => 0,
             'member_id' => $member_id
+        ]);
+
+        return $this->response->redirect('/');
+    }
+
+    // 게시판을 수정합니다.
+    public function updateBbs($bbsId) {
+
+        if (!$this->session->has('member_id')) {
+            $this->response->redirect('/login');
+        }
+
+        $bbs = $this->bbsModel->find($bbsId);
+        if (is_null($bbs)) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        if ($bbs['member_id'] != $this->session->get('member_id')) {
+            throw PageNotFoundException::forPageNotFound();
+        }
+
+        // 내용 가져오기.
+        $bbsTitle = $this->request->getJSON()->bbsTitle;
+        $content = $this->request->getJSON()->content;
+
+        // 수정된 내용 DB에 반영하기.
+        $this->bbsModel->update($bbsId, [
+            'title' => $bbsTitle,
+            'content' => $content,
         ]);
 
         return $this->response->redirect('/');
