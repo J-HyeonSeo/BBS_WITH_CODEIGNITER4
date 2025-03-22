@@ -13,13 +13,6 @@ class BBS extends BaseController {
         $this->session = session();
     }
 
-    // 게시글 목록을 가져옴.
-    public function getBbsPage() {
-
-        //
-
-    }
-
     // 게시글 단건 조회 + Comment 페이징 조회
     public function getBbs() {
 

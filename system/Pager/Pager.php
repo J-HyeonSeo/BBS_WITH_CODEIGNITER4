@@ -322,6 +322,30 @@ class Pager implements PagerInterface
     }
 
     /**
+     * Returns the full URI to the next page of results, or null.
+     *
+     * @return int|null
+     */
+    public function getNextPage(string $group = 'default', bool $returnObject = false)
+    {
+        $this->ensureGroup($group);
+
+        $last = $this->getLastPage($group);
+        $curr = $this->getCurrentPage($group);
+        $page = null;
+
+        if (! empty($last) && ! empty($curr) && $last === $curr) {
+            return $curr;
+        }
+
+        if ($last > $curr) {
+            $page = $curr + 1;
+        }
+
+        return $page;
+    }
+
+    /**
      * Returns the full URL to the previous page of results, or null.
      *
      * @return string|null
@@ -343,6 +367,30 @@ class Pager implements PagerInterface
         }
 
         return $this->getPageURI($page, $group, $returnObject);
+    }
+
+    /**
+     * Returns the full URL to the previous page of results, or null.
+     *
+     * @return int|null
+     */
+    public function getPreviousPage(string $group = 'default', bool $returnObject = false)
+    {
+        $this->ensureGroup($group);
+
+        $first = $this->getFirstPage($group);
+        $curr  = $this->getCurrentPage($group);
+        $page  = null;
+
+        if (! empty($first) && ! empty($curr) && $first === $curr) {
+            return 1;
+        }
+
+        if ($first < $curr) {
+            $page = $curr - 1;
+        }
+
+        return $page;
     }
 
     /**
