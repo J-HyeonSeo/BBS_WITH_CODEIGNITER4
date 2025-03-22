@@ -10,4 +10,10 @@ class MemberModel extends Model
     protected $primaryKey = 'member_id';
     protected $useAutoIncrement = true;
     protected $allowedFields = ['username', 'password', 'nickname'];
+
+    public function findByUsername($username) {
+        return $this->where('username', $username)->first();
+    }
+
+
 }

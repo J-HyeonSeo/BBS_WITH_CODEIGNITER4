@@ -177,7 +177,7 @@
                 "<?= csrf_header() ?>": "<?= csrf_hash() ?>"
             },
             body: JSON.stringify({
-                'bbs-title': bbsTitle,
+                'bbsTitle': bbsTitle,
                 'content': content
             })
         }).then(response => {

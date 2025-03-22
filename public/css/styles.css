@@ -83,6 +83,11 @@ header {
     right: 50px;
     width: 100px;
     background-color: #D37811;
+    border-color: #D37811;
+}
+
+#logout:hover {
+    cursor: pointer;
 }
 
 

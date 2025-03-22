@@ -1,3 +1,6 @@
+<?php
+    $session = session();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -19,20 +22,19 @@
             <img id="title" src="../../../public/image/bbs_logo.png" alt="CodeIgniter BBS">
         </a>
 
-<!--        <div id="title">-->
-<!--            <h1>PHP & CodeIgniter</h1>-->
-<!--            <h1>게시판</h1>-->
-<!--        </div>-->
-        
-        <!-- 로그인 -->
-        <div class="btn" id="login">
-            <a href="/login">로그인</a>
-        </div>
-        
-        <!-- 사용자명 + 로그아웃 -->
-<!--        <h4 id="nickname">개발자J군</h4>-->
-<!--        <div class="btn" id="logout">-->
-<!--            <a href="/logout">로그아웃</a>-->
-<!--        </div>-->
+        <?php if ( $session->has('member_id') && $session->has('nickname') ): ?>
+            <!-- 사용자명 + 로그아웃 -->
+            <h4 id="nickname"><?= esc($session->get('nickname'))?></h4>
+
+            <form action="/logout" method="post">
+                <?= csrf_field() ?>
+                <button class="btn" id="logout">로그아웃</button>
+            </form>
+        <?php else: ?>
+            <!-- 로그인 -->
+            <div class="btn" id="login">
+                <a href="/login">로그인</a>
+            </div>
+        <?php endif; ?>
 
     </header>
