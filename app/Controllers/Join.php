@@ -17,9 +17,9 @@ class Join extends BaseController {
     public function doJoin() {
 
         // 입력 form에서 데이터 추출
-        $username = $_POST['username'];
-        $password = $_POST['password'];
-        $nickname = $_POST['nickname'];
+        $username = $this->request->getPost('username');
+        $password = $this->request->getPost('password');
+        $nickname = $this->request->getPost('nickname');
 
         // 밸리데이션 Rule 정의
         $joinValidation = [
