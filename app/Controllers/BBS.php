@@ -55,7 +55,7 @@ class BBS extends BaseController {
     public function bbsNewForm() {
 
         if (!$this->session->has('member_id')) {
-            $this->response->redirect('/login');
+            return $this->response->redirect('/login');
         }
 
         return view('templates/header')
@@ -68,7 +68,7 @@ class BBS extends BaseController {
     public function bbsEditForm($bbsId = null) {
 
         if (!$this->session->has('member_id')) {
-            $this->response->redirect('/login');
+            return $this->response->redirect('/login');
         }
 
         $bbs = $this->bbsModel->find($bbsId);
@@ -106,7 +106,7 @@ class BBS extends BaseController {
 
         // 사용자 ID 가져오기
         if (!$this->session->has('member_id')) {
-            $this->response->redirect('/login');
+            return $this->response->redirect('/login');
         }
         $member_id = $this->session->get('member_id');
 
@@ -143,7 +143,7 @@ class BBS extends BaseController {
         }
 
         if (!$this->session->has('member_id')) {
-            $this->response->redirect('/login');
+            return $this->response->redirect('/login');
         }
 
         $bbs = $this->bbsModel->find($bbsId);
@@ -172,7 +172,7 @@ class BBS extends BaseController {
     public function deleteBbs($bbsId) {
 
         if (!$this->session->has('member_id')) {
-            $this->response->redirect('/login');
+            return $this->response->redirect('/login');
         }
 
         $bbs = $this->bbsModel->find($bbsId);
