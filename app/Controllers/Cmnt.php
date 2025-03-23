@@ -23,7 +23,7 @@ class Cmnt extends BaseController
 
         // 로그인 안했으면, 리다이렉션
         if (!$this->session->has('member_id')) {
-            $this->response->redirect('/login');
+            return $this->response->redirect('/login');
         }
 
         // 필요한 정보 가져오기.
@@ -49,7 +49,7 @@ class Cmnt extends BaseController
     // 댓글 삭제하기.
     public function deleteCmnt($cmntId = null) {
         if (!$this->session->has('member_id')) {
-            $this->response->redirect('/login');
+            return $this->response->redirect('/login');
         }
 
         $cmnt = $this->cmntModel->find($cmntId);
