@@ -2,7 +2,7 @@
 
 - CodeIgniter는 php언어로 웹개발을 쉽게 할 수 있도록, MVC패턴에 맞게 개발가능한 웹프레임워크이다.
 - 쉬운 접근성으로 Learning Curve가 낮다는 장점이 있다.
-- 개발환경을 구축하기 위해서는 4버전 기준으로 PHP 7.4 버전이 필요하다.
+- 개발환경을 구축하기 위해서는 4버전 기준으로 최소 PHP 7.4 버전이 필요하다.
 - PHP만 설치되어있다면, 실행환경을 구축할 수 있다.
 
 # 프로젝트 소개
@@ -17,3 +17,12 @@
 
 ## 메인 페이지
 ![MAIN](doc/bbs-image-main.png)
+
+## 게시글 에디터
+![BBS-FORM](doc/bbs-edit.png)
+
+## 게시글 뷰어
+![BBS-VIEW](doc/bbs-view.png)
+
+## 댓글
+![CMNT](doc/cmnt.png)
