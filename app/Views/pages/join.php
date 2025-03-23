@@ -16,7 +16,7 @@
                 <div id="form-input">
                     <input id="username" name="username"/>
                     </p>
-                    <input id="password" name="password"/>
+                    <input type="password" id="password" name="password"/>
                     </p>
                     <input id="nickname-for" name="nickname"/>
                 </div>

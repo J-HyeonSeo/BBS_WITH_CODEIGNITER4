@@ -93,6 +93,17 @@ class BBS extends BaseController {
     // 글 신규 작성.
     public function createBbs() {
 
+        // 밸리데이션 Rule 정의
+        $bbsValidation = [
+            'bbsTitle' =>'required|max_length[30]',
+            'content' => 'required|max_length[4000]',
+        ];
+
+        // 다시 작성하도록..!
+        if (!$this->validate($bbsValidation, $this->request->getJSON(true))) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
+
         // 사용자 ID 가져오기
         if (!$this->session->has('member_id')) {
             $this->response->redirect('/login');
@@ -103,17 +114,6 @@ class BBS extends BaseController {
         $data = $this->request->getJSON();
         $bbsTitle = $data->bbsTitle;
         $content = $data->content;
-
-//        // 밸리데이션 Rule 정의
-//        $bbsValidation = [
-//            '$bbsTitle' =>'required|max_length[30]',
-//            '$content' => 'required|max_length[4000]',
-//        ];
-//
-//        // 다시 작성하도록..!
-//        if (!$this->validate($bbsValidation)) {
-//            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-//        }
 
         // 게시글 저장 수행.
         $bbs = new BBSModel();
@@ -130,6 +130,17 @@ class BBS extends BaseController {
 
     // 게시판을 수정합니다.
     public function updateBbs($bbsId) {
+
+        // 밸리데이션 Rule 정의
+        $bbsValidation = [
+            'bbsTitle' =>'required|max_length[30]',
+            'content' => 'required|max_length[4000]',
+        ];
+
+        // 다시 작성하도록..!
+        if (!$this->validate($bbsValidation, $this->request->getJSON(true))) {
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+        }
 
         if (!$this->session->has('member_id')) {
             $this->response->redirect('/login');

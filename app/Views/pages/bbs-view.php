@@ -29,7 +29,7 @@
 
     <form id="create-cmnt-form" action="/cmnt/<?= $bbs['bbs_id']?>" method="post">
         <?= csrf_field() ?>
-        <label for="cmnt-input"></label><textarea id="cmnt-input" name="cmnt-input"></textarea>
+        <label for="cmnt-input"></label><textarea required maxlength="255" id="cmnt-input" name="cmnt-input"></textarea>
         <button class="btn" id="create-cmnt-btn">등록</button>
     </form>
     <hr style="box-shadow: none; height: 1px;">

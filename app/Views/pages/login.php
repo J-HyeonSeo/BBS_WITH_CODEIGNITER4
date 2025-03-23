@@ -14,7 +14,7 @@
                 <div id="form-input">
                     <input id="username" name="username"/>
                     </p>
-                    <input id="password" name="password"/>
+                    <input type="password" id="password" name="password"/>
                 </div>
             </div>
 
