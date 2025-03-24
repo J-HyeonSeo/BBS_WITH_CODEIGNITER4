@@ -24,7 +24,7 @@
         <?= $bbs['content'] ?>
     </div>
     <br>
-    <h3>총 10개의 댓글</h3>
+    <h3>총 <?= $pager->getTotal() ?>개의 댓글</h3>
     <hr>
 
     <form id="create-cmnt-form" action="/cmnt/<?= $bbs['bbs_id']?>" method="post">
